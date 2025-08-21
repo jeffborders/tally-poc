@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "types": ["./types.d.ts"]
+  },
+  "include": ["./mocks/**/*", "./lib/**/*"],
+}

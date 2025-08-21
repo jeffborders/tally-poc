@@ -1,0 +1,19 @@
+{
+  "name": "tally-poc",
+  "version": "1.0.0",
+  "description": "POC for discrepency checking",
+  "main": "index.ts",
+  "scripts": {
+    "parse": "ts-node ./lib/parseInvoices.ts",
+    "start": "ts-node ./lib/findDiscrepancies.ts"
+  },
+  "author": "Jeff Borders",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "openai": "^5.13.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {}
+}

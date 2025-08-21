@@ -3,5 +3,10 @@
     "Pallet charge": { "rate": 100 },
     "Fuel surcharge": { "rate": 50 },
     "Dock fee": { "rate": 50 }
+  },
+  "Carrier C": {
+    "Pallet charge": { "rate": 100 },
+    "Fuel surcharge": { "rate": 50 },
+    "Dock fee": { "rate": 50 }
   }
 }

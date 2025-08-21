@@ -1,10 +1,10 @@
 import untypedInvoices from "../dist/invoices.json";
-import getDiscrepancies from "./utils/getDiscrepancies";
+import getDiscrepanciesFromInvoice from "./utils/getDiscrepanciesFromInvoice";
 
 const invoices: Invoice[] = untypedInvoices;
 
 invoices.forEach(invoice => {
-  const discrepancies = getDiscrepancies(invoice);
+  const discrepancies = getDiscrepanciesFromInvoice(invoice);
 
   console.info(`\nInvoice: ${invoice.id} (${invoice.vendor})`);
 

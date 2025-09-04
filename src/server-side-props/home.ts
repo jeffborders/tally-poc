@@ -53,7 +53,7 @@ const homeGetServerSideProps: GetServerSideProps<{
       }
     }
   } catch(err) {
-    console.error({err});
+    console.error(err);
     const contracts = await getContracts();
     const invoices = await parseInvoices(contracts);
 

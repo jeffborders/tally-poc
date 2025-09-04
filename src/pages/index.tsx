@@ -51,20 +51,20 @@ const HomePageRoute: NextPage<HomePageRouteProps> = ({
         );
       })} 
 
-      <Typography variant="h4" mt={4}>Uncontracted invoice discrepancies</Typography>
+      <Typography variant="h4" mt={4}>Invoices without contracts</Typography>
       {invoicesWithoutContracts.map((invoice) => {
         const date = format(new Date(invoice.date), "MM/dd/yyyy");
 
         return (
-          <Box key={`vendor-${invoice.date}-${invoice.id}`}>
+          <Box key={`vendor-${invoice.date}-${invoice.id}`} display="list-item" ml={4}>
             <Typography variant="body1" fontWeight="bold" display="inline">
-              {invoice.vendor} 
+              {invoice.vendor}{' '}
             </Typography>
             <Typography variant="body1" display="inline">
-              {' '}dated
+              invoice ID: {invoice.id} dated{' '}
             </Typography>
             <Typography variant="body1" fontWeight="bold" display="inline">
-              {' '}{date}
+              {date}
             </Typography>
           </Box>
         )

@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tally POC
+
+This is a proof-of-concept application for **detecting invoice discrepancies** in the 3PL / logistics space.  
+It uses the **OpenAI API** to parse and normalize disparate invoice data, stores normalized records, and runs a **discrepancy engine** against agreed contract rules.  
+The UI is built with **Next.js, React, and TypeScript**.
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:jeffborders/tally-poc.git
+cd tally-poc
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running the Development Server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- **`/src`** – Next.js routes and UI components (React + TypeScript).
+- **`/src/utils/parseInvoices.ts`** – Invoice parsing.
+- **`/src/utils/normalizeCsv.ts`** – Normalization via OpenAI API.
+- **`/src/utils/getDiscrepanciesFromInvoice.ts`** – Compares normalized invoices against contract rules and flags mismatches.
+- **`/mocks/`** – Mock CSV files for invoices.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How It Works
 
-## Deploy on Vercel
+1. **Mocked invoices are ingested, parsed, and normalized** – Different vendors may use different headers/fields, the app calls OpenAI API to map raw invoice fields into a consistent schema:
+   - `id`
+   - `vendor`
+   - `date`
+   - `line_items[]`
+      - `quantity`
+      - `rate`
+      - `description`
+3. **Discrepancy Detection** – Normalized data is compared against the contracts API response to highlight mismatched rates, missing charges, or unexpected fees.
+4. **UI Dashboard** – Displays invoices and highlights discrepancies for review.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Requirements
+
+- **Node.js** 18+
+- **API Keys** (emailed to you):
+Simply replace the file template.env with a file called .env with the keys from the email populated
+---
+
+## Example Data
+
+The repo includes mock data for testing:
+
+- `/mocks/invoices_set1.csv`  
+- `/mocks/invoices_set2.csv`  
+
+These can be modified to simulate different vendor invoice formats and contract terms.
+
+---
+
+## Roadmap / Next Steps
+
+- ✅ Parse and normalize invoices with OpenAI  
+- ✅ Basic discrepancy detection against static rules  
+- 🔲 Add support for PDF and Excel ingestion (via AWS Textract)  
+- 🔲 Multi-vendor contract rules with versioning 
+- 🔲 Authentication and multi-user support  
+- 🔲 Production-ready Postgres deployment  
+- 🔲 Reporting & analytics (e.g. recurring discrepancy categories, vendor scorecards)

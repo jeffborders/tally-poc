@@ -1,8 +1,8 @@
 # Tally POC
 
-This is a proof-of-concept application for **detecting invoice discrepancies** in the 3PL / logistics space.  
-It uses the **OpenAI API** to parse and normalize disparate invoice data, stores normalized records, and runs a **discrepancy engine** against agreed contract rules.  
-The UI is built with **Next.js, React, and TypeScript**.
+- This is a proof-of-concept application for **detecting invoice discrepancies** in the 3PL / logistics space.  
+- It uses the **OpenAI API** to parse and normalize disparate invoice data, stores normalized records, and runs a **discrepancy engine** against agreed contract rules.  
+- The UI is built with **Next.js, React, and TypeScript**.
 
 ---
 
@@ -15,22 +15,17 @@ cd tally-poc
 npm install
 ```
 
+### Adding necessary environment variables
+- Replace contents of file `template.env` with the `env.txt` file emailed to you, then rename the `template.env` file to `.env`
+
 ### Running the Development Server
 ```bash
 npm run dev
 ```
 
+### View the discrepancy UI
+
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## Project Structure
-
-- **`/src`** – Next.js routes and UI components (React + TypeScript).
-- **`/src/utils/parseInvoices.ts`** – Invoice parsing.
-- **`/src/utils/normalizeCsv.ts`** – Normalization via OpenAI API.
-- **`/src/utils/getDiscrepanciesFromInvoice.ts`** – Compares normalized invoices against contract rules and flags mismatches.
-- **`/mocks/`** – Mock CSV files for invoices.
 
 ---
 
@@ -47,13 +42,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 3. **Discrepancy Detection** – Normalized data is compared against the contracts API response to highlight mismatched rates, missing charges, or unexpected fees.
 4. **UI Dashboard** – Displays invoices and highlights discrepancies for review.
 
----
-
-## Requirements
-
-- **Node.js** 18+
-- **API Keys** (emailed to you):
-Simply replace the file template.env with a file called .env with the keys from the email populated
 ---
 
 ## Example Data
@@ -76,3 +64,14 @@ These can be modified to simulate different vendor invoice formats and contract 
 - 🔲 Authentication and multi-user support  
 - 🔲 Production-ready Postgres deployment  
 - 🔲 Reporting & analytics (e.g. recurring discrepancy categories, vendor scorecards)
+- 
+
+---
+
+## Project Structure
+
+- **`/src`** – Next.js routes and UI components (React + TypeScript).
+- **`/src/utils/parseInvoices.ts`** – Invoice parsing.
+- **`/src/utils/normalizeCsv.ts`** – Normalization via OpenAI API.
+- **`/src/utils/getDiscrepanciesFromInvoice.ts`** – Compares normalized invoices against contract rules and flags mismatches.
+- **`/mocks/`** – Mock CSV files for invoices.
